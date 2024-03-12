@@ -37,15 +37,15 @@ function TodoList() {
     const [name, setName] = useState('')
 
     function addItem(text) {
-        dispatch({type: 'ADD-TODO', playload: text});
+        dispatch({type: 'ADD-TODO'});
     }
 
     function removeItem(text) {
-        dispatch({type: 'REMOVE-TODO', playload: text});
+        dispatch({type: 'REMOVE-TODO'});
     }
 
     function toggleComplete(text) {
-        dispatch({type: 'TOGGLE-COMPLETE', playload: text});
+        dispatch({type: 'TOGGLE-COMPLETE'});
     }
 
     function editItem(text, newText) {
