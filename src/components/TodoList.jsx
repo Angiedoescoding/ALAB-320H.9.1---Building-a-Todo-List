@@ -1,4 +1,4 @@
-import {useReducer} from 'react'
+import {useReducer, useState} from 'react'
 import TodoItem from './TodoItem'
 
 const initialState = [];
@@ -34,7 +34,7 @@ function listReducer(state, action) {
 function TodoList() {
     
     const [todos, dispatch] = useReducer(listReducer, initialState);
-
+    const [name, setName] = useState('')
 
     function addItem(text) {
         dispatch({type: 'ADD-TODO', playload: text});
@@ -52,18 +52,25 @@ function TodoList() {
         dispatch({type: 'EDIT-TODO', playload: {text: newText} });
     }
 
-
-
+    function handleSubmit() {
+        e.preventDefault();
+        dispatch({ type: 'ADD-TODO' })
+        setName('')
+    }
 
     return (
         <div>
             <h1>Create To Do List</h1>
+            <form onSubmit={handleSubmit}>
             <input 
                 type="text"
-                placeholder="Add a task"/>
+                placeholder="Add a task"
+                value={name}
+                onChange={ e => setName(e.target.value)}/>
             <ul>
                 <TodoItem />
             </ul>
+            </form>
         </div>
     );
 }
