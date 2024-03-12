@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
 function TodoItem({todo, removeItem, toggleComplete, editItem}) {
 
@@ -16,7 +16,7 @@ function TodoItem({todo, removeItem, toggleComplete, editItem}) {
 
   function handleSave() {
     setEditing(false);
-    editItem(todo.text, editText);
+    editItem(todo, editText);   // passing the todo object
   }
 
   function handleTextChange(e) {
@@ -33,18 +33,16 @@ function TodoItem({todo, removeItem, toggleComplete, editItem}) {
               <input
                 type="checkbox" 
                 checked={todo.completed}     
-                onChange={function(){
-                  toggleComplete(todo.text);
-                }} />
+                onChange={() => toggleComplete(todo.text)} />
                 <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
                 {todo.text}
                 </span>              
             </div>
           )}
-          <button style="margin-right: 5px" onClick={handleEdit} disabled={editing}>Edit</button>
-          <button onClick={handleRemove} disabled={!todo.completed}>Delete</button>
+          <button onClick={handleEdit} disabled={editing} className='editBtn'>Edit</button>
+          <button onClick={handleRemove} disabled={!todo.completed} className='delBtn'>Delete</button>
           {editing && 
-            <button onClick={handleSave}>Save</button>}
+            <button onClick={handleSave} className='saveBtn'>Save</button>}
     </li>
   );
 }
