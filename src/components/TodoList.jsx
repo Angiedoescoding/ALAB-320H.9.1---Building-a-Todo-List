@@ -1,21 +1,32 @@
 import {useReducer} from 'react'
 import TodoItem from './TodoItem'
 
+const initialState = [];
 
-function listReducer() {
-    switch () {
-        case add:
-            return ;
+function listReducer(state, action) {
+    switch (action.type) {      // action.type - the type of action of the cases below!
+        case 'ADD-TODO':
+            return [{text: action.playload, completed: false}, ...state];
 
-        case remove:
-            return ;
+        case 'REMOVE-TODO':
+            return state.filter(function(todo) {
+                return todo.text !== action.playload
+            });
     
-        case complete:
-            return ;
+        case 'TOGGLE-COMPLETE':
+            return state.map(function (todo){
+                return todo.text === action.playload ? 
+                {... todo, completed: !todo.completed} : todo
+            });
         
-        case edit:
-            return ;
+        case 'EDIT-TODO':
+            return state.map(function(todo) {
+                return todo.text === action.playload.text ?
+                 {...todo, text: action.playload.text} : todo
+            });
         
+        default:
+            return state;
     }
 }
 

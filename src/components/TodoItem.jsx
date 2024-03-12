@@ -1,9 +1,9 @@
 import {useState} from 'react'
 
-function TodoItem() {
+function TodoItem({todo}) {
 
   const [editing, setEditing] = useState(false);
-  const [editText, setEditText] = useState();
+  const [editText, setEditText] = useState(todo.text);
 
   return (
     // <div>TodoItem</div>
@@ -13,10 +13,13 @@ function TodoItem() {
             <div>
               <input
                 type="text" 
-                checked={completed} 
+                checked={todo.completed} 
                 onChange={function(){
                   toggleComplete;
                 }} />
+                <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+                {todo.text}
+                </span>
             </div>
           )}
           <button>
