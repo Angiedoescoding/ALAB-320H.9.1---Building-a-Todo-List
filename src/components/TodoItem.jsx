@@ -3,7 +3,7 @@ import {useState} from 'react'
 function TodoItem({todo}) {
 
   const [editing, setEditing] = useState(false);
-  const [editText, setEditText] = useState(todo.text);
+  // const [editText, setEditText] = useState(todo.text);  // temp commenting out - console error
 
   return (
     // <div>TodoItem</div>
@@ -13,13 +13,13 @@ function TodoItem({todo}) {
             <div>
               <input
                 type="text" 
-                checked={todo.completed} 
+                // checked={todo.completed}     // temp commenting out - console error
                 onChange={function(){
                   toggleComplete;
                 }} />
-                <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+                {/* <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
                 {todo.text}
-                </span>
+                </span>         // temp commenting out - console error    */}     
             </div>
           )}
           <button>

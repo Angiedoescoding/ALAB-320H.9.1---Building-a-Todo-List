@@ -33,7 +33,26 @@ function listReducer(state, action) {
 
 function TodoList() {
     
-    
+    const [todos, dispatch] = useReducer(listReducer, initialState);
+
+
+    function addItem(text) {
+        dispatch({type: 'ADD-TODO', playload: text});
+    }
+
+    function removeItem(text) {
+        dispatch({type: 'REMOVE-TODO', playload: text});
+    }
+
+    function toggleComplete(text) {
+        dispatch({type: 'TOGGLE-COMPLETE', playload: text});
+    }
+
+    function editItem(text, newText) {
+        dispatch({type: 'EDIT-TODO', playload: {text: newText} });
+    }
+
+
 
 
     return (
