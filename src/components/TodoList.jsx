@@ -49,7 +49,7 @@ function TodoList() {
     }
 
     function editItem(text, newText) {
-        dispatch({type: 'EDIT-TODO', playload: {text: newText} });
+        dispatch({type: 'EDIT-TODO', playload: {text, text: newText} });
     }
 
     function handleSubmit() {
@@ -68,7 +68,13 @@ function TodoList() {
                 value={name}
                 onChange={ e => setName(e.target.value)}/>
             <ul>
-                <TodoItem />
+                {todos.map((todo) => (
+                    <TodoItem 
+                    todo={todo} 
+                    removeItem={removeItem} 
+                    toggleComplete={toggleComplete}  
+                    editItem={editItem} />
+                ))}
             </ul>
             </form>
         </div>
